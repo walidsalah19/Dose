@@ -12,28 +12,29 @@
         android:theme="@style/Theme.Dose"
         tools:targetApi="31">
         <activity
-            android:name=".PharmaceuticalMainActivity"
+            android:name=".pharmaceutical.PharmaceuticalMainActivity"
             android:exported="false" />
         <activity
-            android:name=".DoctorMainActivity"
+            android:name=".Doctor.DoctorMainActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminMainActivity"
+            android:name=".Admin.AdminMainActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateAccount"
+            android:name=".UserAccess.CreateAccount"
             android:exported="false" />
         <activity
-            android:name=".Login"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".UserAccess.Login"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false">
         </activity>
     </application>
 

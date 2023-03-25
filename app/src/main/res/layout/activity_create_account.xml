@@ -115,7 +115,6 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:id="@+id/text2"
-            android:sta="@id/text1"
-            android:layout_below="@id/login"/>
+            />
     </LinearLayout>
 </RelativeLayout>

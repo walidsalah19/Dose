@@ -14,6 +14,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/back"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/circle_background"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:layout_alignParentStart="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
             <EditText
                 android:id="@+id/edittextArticleTitle"
                 android:layout_width="match_parent"
@@ -30,7 +42,7 @@
                 android:textColor="@color/color4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/back" />
 
             <EditText
                 android:id="@+id/edittextArticleBody"

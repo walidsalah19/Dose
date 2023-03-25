@@ -8,11 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dose.Chat.ChatFragment;
+import com.example.dose.Doctor.AddArticle;
 import com.example.dose.R;
+import com.example.dose.databinding.FragmentDisplayUsersBinding;
 
 public class DisplayUsers extends Fragment {
 
-
+    private FragmentDisplayUsersBinding mBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +26,19 @@ public class DisplayUsers extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_display_users, container, false);
+        mBinding=FragmentDisplayUsersBinding.inflate(inflater,container,false);
+
+        chat();
+        return mBinding.getRoot();
+    }
+    private void chat()
+    {
+        mBinding.cardView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.pharma, new ChatFragment()).addToBackStack(null).commit();
+
+            }
+        });
     }
 }
