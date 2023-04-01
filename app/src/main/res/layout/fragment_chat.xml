@@ -6,18 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Chat.ChatFragment"
     android:background="@color/color7">
+
     <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/back"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/circle_background"
         android:padding="5dp"
-        android:layout_margin="10dp"
-        android:src="@drawable/baseline_arrow_back_24"
-        android:layout_alignParentStart="true" />
+        android:src="@drawable/baseline_arrow_back_24" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/profile"
         android:layout_width="match_parent"
@@ -125,7 +127,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
-        android:layout_below="@id/profile"
+        android:layout_below="@id/receiver_layout"
         android:gravity="end"
         android:orientation="horizontal">
 

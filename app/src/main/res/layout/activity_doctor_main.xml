@@ -22,8 +22,7 @@
     android:layout_height="match_parent"
     android:id="@+id/doctor"
        android:layout_below="@id/toolbar"
-    android:layout_above="@id/doctorNavigation"
-       android:layout_marginBottom="10dp"/>
+    android:layout_above="@id/doctorNavigation" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/doctorNavigation"
         android:layout_width="match_parent"

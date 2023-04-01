@@ -1,4 +1,4 @@
-package com.example.dose.pharmaceutical;
+package com.example.dose.User;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,30 +13,32 @@ import com.example.dose.Doctor.DoctorMainActivity;
 import com.example.dose.Doctor.ManageArticles;
 import com.example.dose.R;
 import com.example.dose.UserAccess.Login;
-import com.example.dose.databinding.ActivityPharmaceuticalMainBinding;
+import com.example.dose.databinding.ActivityUserMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class PharmaceuticalMainActivity extends AppCompatActivity {
-    private ActivityPharmaceuticalMainBinding mBinding;
+public class UserMainActivity extends AppCompatActivity {
+    private ActivityUserMainBinding mBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding=ActivityPharmaceuticalMainBinding.inflate(getLayoutInflater());
+        mBinding=ActivityUserMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
-        getSupportFragmentManager().beginTransaction().replace(R.id.pharma, new DisplayUsers()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new UserHome()).commit();
+
         bottomNavigationAction();
 
     }
 
     private void bottomNavigationAction() {
-        mBinding.pharmaNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        mBinding.doctorNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.logout) {
-                    startActivity(new Intent(PharmaceuticalMainActivity.this, Login.class));
-                }
-                else if (item.getItemId() == R.id.chat)
-                    moveToFragment(new DisplayUsers());
+                    startActivity(new Intent(UserMainActivity.this, Login.class));
+                } else if (item.getItemId() == R.id.home)
+                    moveToFragment(new UserHome());
+                else if (item.getItemId() == R.id.profile)
+                    moveToFragment(new UserProfile());
                 return false;
             }
         });
@@ -44,6 +46,6 @@ public class PharmaceuticalMainActivity extends AppCompatActivity {
     }
 
     private void moveToFragment(Fragment fragment) {
-        getSupportFragmentManager().beginTransaction().replace(R.id.pharma, fragment).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, fragment).addToBackStack(null).commit();
     }
 }

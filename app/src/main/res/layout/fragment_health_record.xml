@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User.HealthRecord"
+    android:background="@color/color7"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_background"
+                android:padding="5dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/baseline_arrow_back_24"
+                android:layout_alignParentStart="true"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+            <EditText
+                android:id="@+id/edittextArticleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Height"
+                android:inputType="text"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/back" />
+
+            <EditText
+                android:id="@+id/weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="top"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Weight"
+                android:inputType="textMultiLine"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edittextArticleTitle" />
+
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Age"
+                android:inputType="text"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/weight" />
+
+            <EditText
+                android:id="@+id/Diabetic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="top"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Diabetic"
+                android:inputType="textMultiLine"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/age" />
+            <EditText
+                android:id="@+id/Pressure"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Pressure"
+                android:inputType="text"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Diabetic" />
+
+            <EditText
+                android:id="@+id/edittextArticleBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="top"
+                android:background="@drawable/edittext_background3"
+                android:drawablePadding="10dp"
+                android:hint="Weight"
+                android:inputType="textMultiLine"
+                android:padding="20dp"
+                android:textColorHint="@color/color4"
+                android:textColor="@color/color4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/edittextArticleTitle" />
+
+            <LinearLayout
+                android:id="@+id/linear4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Pressure">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addArticle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background"
+                    android:text="Ok"
+                    android:textSize="20sp"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:layout_marginEnd="10dp"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

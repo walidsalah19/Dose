@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.dose.Admin.AdminMainActivity;
 import com.example.dose.Doctor.DoctorMainActivity;
 import com.example.dose.R;
+import com.example.dose.User.UserMainActivity;
 import com.example.dose.databinding.ActivityLoginBinding;
 import com.example.dose.pharmaceutical.PharmaceuticalMainActivity;
 
@@ -41,9 +42,9 @@ public class Login extends AppCompatActivity {
              {
                  startActivity(new Intent(Login.this, AdminMainActivity.class));
              }
-             else if (email.equals("doctor"))
+             else if (email.equals("user"))
              {
-                 startActivity(new Intent(Login.this, DoctorMainActivity.class));
+                 startActivity(new Intent(Login.this, UserMainActivity.class));
              }
              else if (email.equals("pharma"))
              {

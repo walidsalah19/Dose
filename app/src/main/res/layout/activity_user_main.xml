@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pharmaceutical.PharmaceuticalMainActivity">
+    tools:context=".User.UserMainActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,16 +14,16 @@
         android:theme="?attr/actionBarTheme"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp"
-        app:title="Pharmaceutical"
+        app:title="user"
         app:titleTextColor="@color/white"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/pharma"
+        android:id="@+id/userFrameLayout"
         android:layout_below="@id/toolbar"
-        android:layout_above="@id/pharmaNavigation" />
+        android:layout_above="@id/doctorNavigation" />
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/pharmaNavigation"
+        android:id="@+id/doctorNavigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -35,5 +34,5 @@
         app:itemTextColor="@color/color4"
         android:animateLayoutChanges="true"
         app:labelVisibilityMode="unlabeled"
-        app:menu="@menu/pharmaceutical" />
+        app:menu="@menu/user_menu" />
 </RelativeLayout>
