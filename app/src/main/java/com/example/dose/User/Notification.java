@@ -9,18 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dose.R;
-import com.example.dose.databinding.FragmentUserProfileBinding;
+import com.example.dose.databinding.FragmentNotificationBinding;
 
-public class UserProfile extends Fragment {
 
-    private FragmentUserProfileBinding mBinding;
+public class Notification extends Fragment {
 
+   private FragmentNotificationBinding mBinding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding=FragmentUserProfileBinding.inflate(inflater,container,false);
-
+        mBinding=FragmentNotificationBinding.inflate(inflater,container,false);
 
         return mBinding.getRoot();
     }

@@ -28,7 +28,18 @@ public class UserHome extends Fragment {
         chat();
         check();
         alarm();
+        notification();
         return mBinding.getRoot();
+    }
+    private void notification()
+    {
+        mBinding.notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.notificationLayout, new Notification()).addToBackStack(null).commit();
+
+            }
+        });
     }
     private void health()
     {
