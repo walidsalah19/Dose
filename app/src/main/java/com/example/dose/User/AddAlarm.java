@@ -20,6 +20,7 @@ public class AddAlarm extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentAddAlarmBinding.inflate(inflater,container,false);
+        repeat();
         back();
         return mBinding.getRoot();
     }
@@ -29,6 +30,15 @@ public class AddAlarm extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new Alarms()).commit();
+            }
+        });
+    }
+    private void repeat()
+    {
+        mBinding.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction().add(R.id.userFrameLayout, new RepeatAlarm()).addToBackStack(null).commit();
             }
         });
     }

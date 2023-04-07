@@ -12,8 +12,6 @@
         android:background="@color/color4"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"
         app:title="user"
         app:titleTextColor="@color/white"/>
     <FrameLayout
@@ -27,8 +25,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
         android:background="@color/color7"
         app:itemIconTint="@color/color4"
         app:itemTextColor="@color/color4"

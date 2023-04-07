@@ -12,6 +12,7 @@ import com.example.dose.AddTreatment;
 import com.example.dose.Doctor.DoctorMainActivity;
 import com.example.dose.Doctor.ManageArticles;
 import com.example.dose.R;
+import com.example.dose.User.Treatment;
 import com.example.dose.UserAccess.Login;
 import com.example.dose.databinding.ActivityPharmaceuticalMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
@@ -37,6 +38,13 @@ public class PharmaceuticalMainActivity extends AppCompatActivity {
                 }
                 else if (item.getItemId() == R.id.chat)
                     moveToFragment(new DisplayUsers());
+                else if (item.getItemId() == R.id.check) {
+                    Bundle b=new Bundle();
+                    b.putString("type","1");
+                    Treatment t=new Treatment();
+                    t.setArguments(b);
+                    moveToFragment(t);
+                }
                 return false;
             }
         });

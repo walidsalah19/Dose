@@ -17,6 +17,5 @@
         <item name="android:textColor">@color/color4</item>
         <item name="android:drawablePadding">10dp</item>
         <item name="android:paddingEnd">30dp</item>
-
     </style>
 </resources>

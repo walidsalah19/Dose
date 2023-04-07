@@ -55,7 +55,11 @@ public class UserHome extends Fragment {
         mBinding.cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                moveToFragment(new Treatment());
+                Bundle b=new Bundle();
+                b.putString("type","2");
+                Treatment t=new Treatment();
+                t.setArguments(b);
+                moveToFragment(t);
             }
         });
     }

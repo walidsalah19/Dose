@@ -9,20 +9,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dose.R;
-import com.example.dose.databinding.FragmentTreatmentBinding;
+import com.example.dose.databinding.FragmentRepeatAlarmBinding;
 
-public class Treatment extends Fragment {
-    private FragmentTreatmentBinding mBinding;
+
+public class RepeatAlarm extends Fragment {
+    private FragmentRepeatAlarmBinding mBinding;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mBinding=FragmentTreatmentBinding.inflate(inflater,container,false);
-        String type=getArguments().getString("type");
-        if (type.equals("1"))
-        {
-            mBinding.back.setVisibility(View.GONE);
-        }
+        mBinding=FragmentRepeatAlarmBinding.inflate(inflater,container,false);
         back();
         return mBinding.getRoot();
     }
@@ -31,7 +27,7 @@ public class Treatment extends Fragment {
         mBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new UserHome()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().remove(RepeatAlarm.this).commit();
             }
         });
     }

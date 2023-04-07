@@ -83,42 +83,6 @@
                 app:layout_constraintTop_toBottomOf="@id/weight" />
 
             <EditText
-                android:id="@+id/Diabetic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:gravity="top"
-                android:background="@drawable/edittext_background3"
-                android:drawablePadding="10dp"
-                android:hint="Diabetic"
-                android:inputType="textMultiLine"
-                android:padding="20dp"
-                android:textColorHint="@color/color4"
-                android:textColor="@color/color4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/age" />
-            <EditText
-                android:id="@+id/Pressure"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/edittext_background3"
-                android:drawablePadding="10dp"
-                android:hint="Pressure"
-                android:inputType="text"
-                android:padding="20dp"
-                android:textColorHint="@color/color4"
-                android:textColor="@color/color4"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Diabetic" />
-
-            <EditText
                 android:id="@+id/edittextArticleBody"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -147,7 +111,7 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/Pressure">
+                app:layout_constraintTop_toBottomOf="@id/age">
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/addArticle"
                     android:layout_width="match_parent"

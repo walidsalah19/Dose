@@ -4,6 +4,10 @@
         android:title="Chat"
         android:icon="@drawable/baseline_chat_24">
     </item>
+    <item android:id="@+id/check"
+        android:title="check"
+        android:icon="@drawable/treatment">
+    </item>
     <item android:id="@+id/logout"
         android:title="logout"
         android:icon="@drawable/baseline_logout_24">
