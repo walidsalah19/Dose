@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dose.Doctor.AddArticle;
+import com.example.dose.Common;
 import com.example.dose.R;
+import com.example.dose.User.DisplayPharma;
 import com.example.dose.databinding.FragmentChatBinding;
 import com.example.dose.pharmaceutical.DisplayUsers;
 
@@ -38,8 +39,13 @@ public class ChatFragment extends Fragment {
         mBinding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.pharma,new DisplayUsers()).commit();
+                if (Common.type==1) {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.pharma, new DisplayUsers()).commit();
+                }
+                else {
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new DisplayPharma()).commit();
 
+                }
             }
         });
     }

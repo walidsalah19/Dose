@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dose.Chat.ChatFragment;
-import com.example.dose.Doctor.AddArticle;
+import com.example.dose.Common;
 import com.example.dose.R;
 import com.example.dose.databinding.FragmentDisplayUsersBinding;
 
@@ -36,6 +36,7 @@ public class DisplayUsers extends Fragment {
         mBinding.cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Common.type=1;
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.pharma, new ChatFragment()).addToBackStack(null).commit();
 
             }

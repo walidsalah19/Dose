@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dose.Chat.ChatFragment;
+import com.example.dose.Common;
 import com.example.dose.R;
 import com.example.dose.databinding.FragmentDisplayPharmaBinding;
 
@@ -38,6 +39,7 @@ public class DisplayPharma extends Fragment {
         mBinding.cardView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Common.type=0;
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new ChatFragment()).addToBackStack(null).commit();
 
             }

@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.dose.Admin.AdminMainActivity;
-import com.example.dose.Doctor.DoctorMainActivity;
-import com.example.dose.R;
 import com.example.dose.User.UserMainActivity;
 import com.example.dose.databinding.ActivityLoginBinding;
 import com.example.dose.pharmaceutical.PharmaceuticalMainActivity;

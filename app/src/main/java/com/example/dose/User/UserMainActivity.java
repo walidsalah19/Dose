@@ -8,9 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.dose.AddTreatment;
-import com.example.dose.Doctor.DoctorMainActivity;
-import com.example.dose.Doctor.ManageArticles;
 import com.example.dose.R;
 import com.example.dose.UserAccess.Login;
 import com.example.dose.databinding.ActivityUserMainBinding;

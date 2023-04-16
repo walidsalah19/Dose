@@ -18,9 +18,6 @@
             android:name=".pharmaceutical.PharmaceuticalMainActivity"
             android:exported="false" />
         <activity
-            android:name=".Doctor.DoctorMainActivity"
-            android:exported="false" />
-        <activity
             android:name=".Admin.AdminMainActivity"
             android:exported="false" />
         <activity

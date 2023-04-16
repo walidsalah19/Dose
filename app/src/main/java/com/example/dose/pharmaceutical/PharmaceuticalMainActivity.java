@@ -7,10 +7,6 @@ import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-
-import com.example.dose.AddTreatment;
-import com.example.dose.Doctor.DoctorMainActivity;
-import com.example.dose.Doctor.ManageArticles;
 import com.example.dose.R;
 import com.example.dose.User.Treatment;
 import com.example.dose.UserAccess.Login;
