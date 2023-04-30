@@ -12,6 +12,7 @@ import com.example.dose.User.Treatment;
 import com.example.dose.UserAccess.Login;
 import com.example.dose.databinding.ActivityPharmaceuticalMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class PharmaceuticalMainActivity extends AppCompatActivity {
     private ActivityPharmaceuticalMainBinding mBinding;
@@ -30,6 +31,7 @@ public class PharmaceuticalMainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.logout) {
+                    FirebaseAuth.getInstance().signOut();
                     startActivity(new Intent(PharmaceuticalMainActivity.this, Login.class));
                 }
                 else if (item.getItemId() == R.id.chat)
