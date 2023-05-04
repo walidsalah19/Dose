@@ -2,17 +2,28 @@ package com.example.dose.User;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.dose.R;
+import com.example.dose.User.Alarm.Alarms;
 import com.example.dose.databinding.FragmentUserHomeBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserHome extends Fragment {
     private FragmentUserHomeBinding mBinding;
+    private DatabaseReference database;
+    private String userId;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +35,39 @@ public class UserHome extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentUserHomeBinding.inflate(inflater,container,false);
+       initFirebase();
         health();
         chat();
         check();
         alarm();
         notification();
         return mBinding.getRoot();
+    }
+    private void initFirebase()
+    {
+        database= FirebaseDatabase.getInstance().getReference("users");
+        userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        getUserData();
+    }
+    private void getUserData()
+    {
+        database.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String name=snapshot.child("userName").getValue().toString();
+                mBinding.userName.setText(name);
+                if (snapshot.child("image").exists())
+                {
+                    String im=snapshot.child("image").getValue().toString();
+                    Glide.with(UserHome.this).load(im).into(mBinding.profileImage);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     private void notification()
     {

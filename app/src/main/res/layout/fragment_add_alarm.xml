@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.AddAlarm"
+    tools:context=".User.Alarm.AddAlarm"
     android:background="@color/color7"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -25,20 +25,23 @@
                 android:background="@drawable/circle_background"
                 android:padding="5dp"
                 android:src="@drawable/baseline_arrow_back_24" />
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/addAlarm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
                 android:background="@drawable/button_background"
                 android:text="save"
-                android:textSize="20sp"
-                android:layout_weight="1"
                 android:textAllCaps="false"
-                android:layout_marginEnd="10dp"
-                android:layout_margin="15dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"/>
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         <TextView
             android:id="@+id/text"
             android:layout_width="wrap_content"
@@ -63,7 +66,8 @@
                 android:id="@+id/datePicker1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner"/>
+                android:timePickerMode="spinner"
+                android:background="@color/color7"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/dayes"
@@ -94,7 +98,7 @@
                         android:id="@+id/text3"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:text="Every Sunday"
+                        android:text="Every Day"
                         android:textSize="18sp"
                         android:textColor="@color/black"
                         android:gravity="center"
@@ -113,7 +117,7 @@
                     />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             <EditText
-                android:id="@+id/edittextArticleTitle"
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

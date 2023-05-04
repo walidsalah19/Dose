@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.example.dose.Models.User;
+import com.example.dose.User.UserMainActivity;
 import com.example.dose.databinding.ActivityCreateAccountBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,7 +55,6 @@ public class CreateAccount extends AppCompatActivity {
         String email=mBinding.email.getText().toString();
         String password=mBinding.password.getText().toString();
         String userName=mBinding.username.getText().toString();
-        String id= UUID.randomUUID().toString();
 
         if (TextUtils.isEmpty(userName))
         {
@@ -69,7 +69,7 @@ public class CreateAccount extends AppCompatActivity {
             mBinding.password.setError("please enter user password ");
         }
         else {
-            User p=new User(userName,email,id,"user");
+            User p=new User(userName,email,"","user","");
             createUserAccount(p,password);
         }
 
@@ -82,6 +82,7 @@ public class CreateAccount extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
+                    p.setId(task.getResult().getUser().getUid().toString());
                     addToDatabase(p);
                 }
             }
@@ -95,6 +96,7 @@ public class CreateAccount extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful())
                 {
+                    startActivity(new Intent(CreateAccount.this, UserMainActivity.class));
                     successSweetDialog();
                 }
             }

@@ -54,7 +54,6 @@ public class AdminMainActivity extends AppCompatActivity {
         String email=mBinding.email.getText().toString();
         String password=mBinding.password.getText().toString();
         String userName=mBinding.username.getText().toString();
-        String id= UUID.randomUUID().toString();
 
          if (TextUtils.isEmpty(userName))
         {
@@ -69,7 +68,7 @@ public class AdminMainActivity extends AppCompatActivity {
             mBinding.password.setError("please enter pharmaceutical password ");
         }
         else {
-             User p=new User(userName,email,id,"pharma");
+             User p=new User(userName,email,"","pharma","");
              createPharmaAccount(p,password);
          }
 
@@ -82,6 +81,7 @@ public class AdminMainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
+                    p.setId(task.getResult().getUser().getUid().toString());
                     addToDatabase(p);
                 }
             }

@@ -4,6 +4,25 @@
         <item>drink</item>
         <item>pills</item>
     </string-array>
+    <string-array name="users">
+        <item>User</item>
+        <item>Pharmaceutical</item>
+    </string-array>
+    <string-array name="Diabetic">
+        <item>Diabetic</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="pressure">
+        <item>Pressure</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
+    <string-array name="onsoline">
+        <item>Penicillin Allergy</item>
+        <item>Yes</item>
+        <item>No</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

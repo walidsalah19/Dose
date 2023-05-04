@@ -60,6 +60,8 @@ public class Login extends AppCompatActivity {
          public void onClick(View v) {
              String email=mBinding.email.getText().toString();
              String password=mBinding.password.getText().toString();
+             String type=mBinding.type.getSelectedItem().toString();
+
              if (email.equals("admin@gmail.com"))
              {
                  startActivity(new Intent(Login.this, AdminMainActivity.class));
@@ -86,9 +88,20 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful())
                 {
-                    isPharma(task.getResult().getUser().getUid().toString());
+                    String type=mBinding.type.getSelectedItem().toString();
+                    if (type.equals("User")) {
+                        isUser(task.getResult().getUser().getUid().toString());
+                    }
+                    else if (type.equals("Pharmaceutical")) {
+                        isPharma(task.getResult().getUser().getUid().toString());
+                    }else {
+                        loading.dismiss();
+                        funLoginFailed();
+                    }
+
                 }
                 else {
+                    loading.dismiss();
                     funLoginFailed();
                 }
             }
@@ -106,7 +119,8 @@ public class Login extends AppCompatActivity {
                     startActivity(new Intent(Login.this, PharmaceuticalMainActivity.class));
                 }
                 else{
-                    isUser(id);
+                    loading.dismiss();
+                    funLoginFailed();
                 }
             }
 
@@ -118,7 +132,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void isUser(String id) {
-        database.child("Users").child(id).addValueEventListener(new ValueEventListener() {
+        database.child("users").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists())
@@ -128,8 +142,10 @@ public class Login extends AppCompatActivity {
                     startActivity(new Intent(Login.this, UserMainActivity.class));
                 }
                 else{
+                    loading.dismiss();
                     funLoginFailed();
                 }
+
             }
 
             @Override

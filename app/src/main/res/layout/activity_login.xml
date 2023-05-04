@@ -30,12 +30,32 @@
            android:textColor="@color/color4"
            android:textSize="29sp"
            android:id="@+id/title"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_below="@id/title"
+            android:background="@drawable/edittext_background1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            >
+            <Spinner
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/users"
+                android:padding="10dp"
+                android:theme="@style/mySpinnerItemStyle"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </RelativeLayout>
 
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
+            android:layout_below="@id/spinner"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"

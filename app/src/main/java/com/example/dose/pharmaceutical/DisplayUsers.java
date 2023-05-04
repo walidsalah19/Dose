@@ -47,8 +47,8 @@ public class DisplayUsers extends Fragment {
         mBinding=FragmentDisplayUsersBinding.inflate(inflater,container,false);
         startLoading();
         initFirebase();
-        chat();
         init();
+        chat();
         getUsers();
         return mBinding.getRoot();
     }
@@ -64,7 +64,7 @@ public class DisplayUsers extends Fragment {
     private void init()
     {
         users=new ArrayList<>();
-        adapter=new DisplayUsersAdapter(users);
+        adapter=new DisplayUsersAdapter(users,getContext());
         mBinding.users.setLayoutManager(new LinearLayoutManager(getActivity()));
         mBinding.users.setAdapter(adapter);
     }
@@ -81,7 +81,8 @@ public class DisplayUsers extends Fragment {
                    String email=data.child("email").getValue().toString();
                    String id=data.child("id").getValue().toString();
                    String type=data.child("type").getValue().toString();
-                   users.add(new User(name,email,id,type));
+                   String image=data.child("image").getValue().toString();
+                   users.add(new User(name,email,id,type,image));
                }
                adapter.notifyDataSetChanged();
            }
@@ -98,7 +99,7 @@ public class DisplayUsers extends Fragment {
     {
         adapter.setOnItemClickListener(new DisplayUsersAdapter.OnItemClickListener() {
             @Override
-            public void onclick(int position, int type) {
+            public void onclick(int position) {
                 Bundle b=new Bundle();
                 b.putParcelable("user",users.get(position));
                 ChatFragment c=new ChatFragment();

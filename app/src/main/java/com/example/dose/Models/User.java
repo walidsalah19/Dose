@@ -6,13 +6,14 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class User implements Parcelable {
-    String userName,email,id,type;
+    String userName,email,id,type,image;
 
-    public User(String userName, String email, String id, String type) {
+    public User(String userName, String email, String id, String type, String image) {
         this.userName = userName;
         this.email = email;
         this.id = id;
         this.type = type;
+        this.image = image;
     }
 
     protected User(Parcel in) {
@@ -20,6 +21,7 @@ public class User implements Parcelable {
         email = in.readString();
         id = in.readString();
         type = in.readString();
+        image = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -66,6 +68,14 @@ public class User implements Parcelable {
         this.type = type;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -77,5 +87,6 @@ public class User implements Parcelable {
         dest.writeString(email);
         dest.writeString(id);
         dest.writeString(type);
+        dest.writeString(image);
     }
 }

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".User.RepeatAlarm"
-    android:background="@color/color5">
+    android:background="@color/color7">
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -47,12 +47,13 @@
         android:layout_marginTop="20dp"
         android:background="@color/color7">
         <TextView
+            android:id="@+id/Sunday"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Every Sunday"
             android:textSize="20sp"
-            android:textColor="@color/color4"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:layout_margin="10dp"
             android:layout_below="@id/back"
@@ -64,6 +65,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Monday"
             android:layout_weight="1"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
@@ -82,6 +84,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Tuesday"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +102,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Wednesday"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -116,6 +120,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Thursday"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -134,6 +139,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Friday"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -151,6 +157,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"/>
         <TextView
+            android:id="@+id/Saturday"
             android:layout_marginStart="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

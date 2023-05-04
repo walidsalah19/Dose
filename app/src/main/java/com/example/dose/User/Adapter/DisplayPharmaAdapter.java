@@ -1,4 +1,4 @@
-package com.example.dose.pharmaceutical.Adapter;
+package com.example.dose.User.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,7 +17,7 @@ import com.example.dose.R;
 
 import java.util.ArrayList;
 
-public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapter.help>{
+public class DisplayPharmaAdapter extends RecyclerView.Adapter<DisplayPharmaAdapter.help>{
     private OnItemClickListener mListener;
     public interface OnItemClickListener{
         void onclick(int position);
@@ -26,12 +26,12 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
         mListener=listener;
     }
     private ArrayList<User> users;
+
     Context context;
-    public DisplayUsersAdapter(ArrayList<User> users,Context context) {
+    public DisplayPharmaAdapter(ArrayList<User> users, Context context) {
         this.users = users;
         this.context=context;
     }
-
     @NonNull
     @Override
     public help onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
