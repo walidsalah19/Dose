@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dose.Models.Alarm;
 import com.example.dose.R;
 import com.example.dose.User.Alarm.AddAlarm;
 import com.example.dose.User.UserHome;
@@ -20,17 +21,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class Alarms extends Fragment {
     private FragmentAlarmsBinding mBinding;
     private DatabaseReference database;
     private String userId;
+    private ArrayList<Alarm> alarms;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentAlarmsBinding.inflate(inflater,container,false);
-
-
+        initFirebase();
         addAlarm();
         back();
         return mBinding.getRoot();

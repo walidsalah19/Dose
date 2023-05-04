@@ -49,7 +49,7 @@ public class AlarmNotification extends Worker {
                 new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
 
         notificationBuilder
-                //.setSmallIcon(R.drawable.logo)
+                .setSmallIcon(R.drawable.logo)
                 .setContentTitle(title)
                 .setSound(sound)
                 .setDefaults(NotificationCompat.DEFAULT_SOUND)

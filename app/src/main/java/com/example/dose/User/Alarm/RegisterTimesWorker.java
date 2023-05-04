@@ -48,13 +48,14 @@ public class RegisterTimesWorker extends Worker {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 calendar = Calendar.getInstance();
             }
-            int hour = calendar.get(Calendar.HOUR);
+            int hour = calendar.get(Calendar.HOUR_OF_DAY);
             int minute = calendar.get(Calendar.MINUTE) ;
             int  seconds= calendar.get(Calendar.SECOND) ;
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH) ;
             int day = calendar.get(Calendar.DAY_OF_MONTH);
             ArrayList<Alarm> times=new ArrayList<>();
+            Log.e("hour",hour+"");
             DatabaseReference data= FirebaseDatabase.getInstance().getReference("alarms");
             String userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
             data.child(userId).addValueEventListener(new ValueEventListener() {
@@ -94,7 +95,7 @@ public class RegisterTimesWorker extends Worker {
             times.forEach(s ->{
                 String selectTime= s.getTime()+":"+"00";
 
-                String alarmTime = "" + year + "/" + month + "/" + day + " " +"alarm"+s.getTime();//unique for every alarm
+                String alarmTime = "" + year + "/" + month + "/" + day + " " +s.getName()+s.getTime();//unique for every alarm
                 String currentTime=hour+":"+minute+":"+seconds;
                 long delay = Common.calculateDelay(currentTime, selectTime);
                 Log.e("delay",delay+"");
@@ -104,7 +105,7 @@ public class RegisterTimesWorker extends Worker {
                 if (delay > 0) {
                     Data input = new Data.Builder()
                             .putString("title", "Dose")
-                            .putString("content", "alarm")
+                            .putString("content", s.getName())
                             .build();
 
                     OneTimeWorkRequest registerPrayerRequest = new OneTimeWorkRequest
