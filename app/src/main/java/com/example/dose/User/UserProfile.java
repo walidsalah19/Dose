@@ -40,7 +40,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class UserProfile extends Fragment {
 
     private FragmentUserProfileBinding mBinding;
-    private String userId,name,email,type,image;
+    private String userId,name,email,type,image="";
     private DatabaseReference database;
     private SweetAlertDialog loading;
     private UploadTask uploadTask;
@@ -76,8 +76,10 @@ public class UserProfile extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                  name=snapshot.child("userName").getValue().toString();
                  email=snapshot.child("email").getValue().toString();
-                 image=snapshot.child("image").getValue().toString();
                  type=snapshot.child("type").getValue().toString();
+                 if (snapshot.child("image").exists()) {
+                     image = snapshot.child("image").getValue().toString();
+                 }
                  loading.dismiss();
                  addDataView();
             }
@@ -92,7 +94,7 @@ public class UserProfile extends Fragment {
     {
         mBinding.userName.setText(name);
         mBinding.email.setText(email);
-        if (! image.equals(null))
+        if (! image.equals(""))
         {
             Glide.with(this).load(image).into(mBinding.profile);
         }

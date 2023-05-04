@@ -52,13 +52,15 @@ public class HealthRecord extends Fragment {
         database.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                height=snapshot.child("height").getValue().toString();
-                weight=snapshot.child("weight").getValue().toString();
-                age=snapshot.child("age").getValue().toString();
-                diabetic=snapshot.child("diabetic").getValue().toString();
-                pressure=snapshot.child("pressure").getValue().toString();
-                penicillinAllergy=snapshot.child("penicillinAllergy").getValue().toString();
-                addToView();
+                if (snapshot.exists()) {
+                    height = snapshot.child("height").getValue().toString();
+                    weight = snapshot.child("weight").getValue().toString();
+                    age = snapshot.child("age").getValue().toString();
+                    diabetic = snapshot.child("diabetic").getValue().toString();
+                    pressure = snapshot.child("pressure").getValue().toString();
+                    penicillinAllergy = snapshot.child("penicillinAllergy").getValue().toString();
+                    addToView();
+                }
 
             }
 

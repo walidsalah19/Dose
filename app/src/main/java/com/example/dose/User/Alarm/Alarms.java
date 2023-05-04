@@ -5,6 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.dose.Models.Alarm;
 import com.example.dose.R;
+import com.example.dose.SweetDialog;
 import com.example.dose.User.Adapter.DisplayAlarms;
 import com.example.dose.User.Adapter.DisplayPharmaAdapter;
 import com.example.dose.User.Alarm.AddAlarm;
@@ -27,6 +31,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Alarms extends Fragment {
     private FragmentAlarmsBinding mBinding;
@@ -34,15 +41,26 @@ public class Alarms extends Fragment {
     private String userId;
     private ArrayList<Alarm> alarms;
     private DisplayAlarms adapter;
+    private SweetAlertDialog loading;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentAlarmsBinding.inflate(inflater,container,false);
+        startLoading();
         initFirebase();
+        init();
+        getAlarm();
+        changeStatus();
         addAlarm();
         back();
         return mBinding.getRoot();
+    }
+    private void startLoading()
+    {
+        loading= SweetDialog.loading(getActivity());
+        loading.show();
     }
     private void initFirebase()
     {
@@ -73,6 +91,7 @@ public class Alarms extends Fragment {
                         alarms.add(new Alarm(name,time,status,alarmId,null));
                     }
                 }
+                loading.dismiss();
                 adapter.notifyDataSetChanged();
             }
 
@@ -103,11 +122,23 @@ public class Alarms extends Fragment {
         database.child(userId).child(id).child("status").setValue(status).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-
+                if (task.isSuccessful())
+                {
+                    createAlarm();
+                }
             }
         });
     }
+    private void createAlarm()
+    {
+        WorkManager.getInstance(getActivity().getApplicationContext()).cancelAllWork();
+        PeriodicWorkRequest request=new PeriodicWorkRequest
+                .Builder(RegisterTimesWorker.class,1, TimeUnit.DAYS)
+                .addTag("Alarm")
+                .build();
+        WorkManager.getInstance(getActivity().getApplicationContext()).enqueueUniquePeriodicWork("Alarm", ExistingPeriodicWorkPolicy.REPLACE,request);
 
+    }
     private void back()
     {
         mBinding.back.setOnClickListener(new View.OnClickListener() {

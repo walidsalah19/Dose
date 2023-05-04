@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import com.example.dose.R;
-import com.example.dose.User.Treatment;
+import com.example.dose.TreatmentFragment;
 import com.example.dose.UserAccess.Login;
 import com.example.dose.databinding.ActivityPharmaceuticalMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
@@ -39,7 +39,7 @@ public class PharmaceuticalMainActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.check) {
                     Bundle b=new Bundle();
                     b.putString("type","1");
-                    Treatment t=new Treatment();
+                    TreatmentFragment t=new TreatmentFragment();
                     t.setArguments(b);
                     moveToFragment(t);
                 }

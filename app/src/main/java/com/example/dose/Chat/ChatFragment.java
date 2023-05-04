@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.example.dose.Common;
 import com.example.dose.Models.User;
 import com.example.dose.R;
@@ -55,6 +56,7 @@ public class ChatFragment extends Fragment {
         Database= FirebaseDatabase.getInstance().getReference("chat");
         userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         receiverId=user.getId();
+        Glide.with(this).load(user.getImage()).into(mBinding.profileImage);
         recyclerViewComponent();
         back();
         sendMessage();

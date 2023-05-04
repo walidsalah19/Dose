@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.dose.R;
+import com.example.dose.TreatmentFragment;
 import com.example.dose.User.Alarm.Alarms;
 import com.example.dose.databinding.FragmentUserHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +42,7 @@ public class UserHome extends Fragment {
         check();
         alarm();
         notification();
+        removeNotification();
         return mBinding.getRoot();
     }
     private void initFirebase()
@@ -79,6 +81,15 @@ public class UserHome extends Fragment {
             }
         });
     }
+    private void removeNotification()
+    {
+        mBinding.relative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mBinding.notificationLayout.setVisibility(View.INVISIBLE);
+            }
+        });
+    }
     private void health()
     {
         mBinding.cardView.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +106,7 @@ public class UserHome extends Fragment {
             public void onClick(View view) {
                 Bundle b=new Bundle();
                 b.putString("type","2");
-                Treatment t=new Treatment();
+                TreatmentFragment t=new TreatmentFragment();
                 t.setArguments(b);
                 moveToFragment(t);
             }
