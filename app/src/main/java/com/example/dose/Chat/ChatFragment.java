@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.dose.Common;
+import com.example.dose.Models.MessageModel;
 import com.example.dose.Models.User;
 import com.example.dose.R;
 import com.example.dose.User.DisplayPharma;

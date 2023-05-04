@@ -58,7 +58,7 @@ public class UserHome extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String name=snapshot.child("userName").getValue().toString();
                 mBinding.userName.setText(name);
-                if (snapshot.child("image").exists())
+                if (snapshot.child("image").exists() && !snapshot.child("image").getValue().toString().equals(""))
                 {
                     String im=snapshot.child("image").getValue().toString();
                     Glide.with(UserHome.this).load(im).into(mBinding.profileImage);
@@ -76,6 +76,7 @@ public class UserHome extends Fragment {
         mBinding.notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mBinding.notificationLayout.setVisibility(View.VISIBLE);
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.notificationLayout, new Notification()).addToBackStack(null).commit();
 
             }

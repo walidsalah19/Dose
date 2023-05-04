@@ -1,4 +1,4 @@
-package com.example.dose.Chat;
+package com.example.dose.Models;
 
 public class MessageModel {
     String message,userId,time;

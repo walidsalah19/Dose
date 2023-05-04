@@ -30,7 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Login extends AppCompatActivity {
-   private ActivityLoginBinding mBinding;
+    private ActivityLoginBinding mBinding;
     private int pStatus=0;
     private DatabaseReference database;
     private SweetAlertDialog loading;

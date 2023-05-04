@@ -1,8 +1,6 @@
 package com.example.dose.User.Alarm;
 
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -94,7 +92,6 @@ public class RegisterTimesWorker extends Worker {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             times.forEach(s ->{
                 String selectTime= s.getTime()+":"+"00";
-
                 String alarmTime = "" + year + "/" + month + "/" + day + " " +s.getName()+s.getTime();//unique for every alarm
                 String currentTime=hour+":"+minute+":"+seconds;
                 long delay = Common.calculateDelay(currentTime, selectTime);

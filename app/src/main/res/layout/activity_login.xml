@@ -92,17 +92,20 @@
             android:textColor="@color/color4"
             android:textColorHint="@color/color4"
             android:textSize="19sp" />
+
         <ImageView
             android:id="@+id/showPassword"
             android:layout_width="30dp"
             android:layout_height="0dp"
-            android:background="@drawable/baseline_visibility_24"
-            android:layout_gravity="center"
-            android:layout_margin="5dp"
-            android:layout_alignBottom="@id/password"
+            android:layout_alignTop="@id/password"
             android:layout_alignEnd="@id/password"
-            android:layout_alignTop="@id/password">
-        </ImageView>
+            android:layout_alignBottom="@id/password"
+            android:layout_gravity="center"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/baseline_visibility_24"></ImageView>
         <androidx.appcompat.widget.AppCompatButton
             android:layout_width="150dp"
             android:layout_height="wrap_content"

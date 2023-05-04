@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.dose.Models.MessageModel;
 import com.example.dose.R;
 
 import java.util.ArrayList;

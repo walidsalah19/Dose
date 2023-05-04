@@ -54,7 +54,7 @@ public class DisplayPharma extends Fragment {
     }
     private void initFirebase()
     {
-        database= FirebaseDatabase.getInstance().getReference("users");
+        database= FirebaseDatabase.getInstance().getReference("pharma");
     }
     private void init()
     {
