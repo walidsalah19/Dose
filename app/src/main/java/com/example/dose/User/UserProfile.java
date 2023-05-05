@@ -119,6 +119,7 @@ public class UserProfile extends Fragment {
         {
             if (data !=null)
             {
+                Glide.with(this).load(data.getData().toString()).into(mBinding.profile);
                 startLoading();
                 saveImage(data.getData());
             }
