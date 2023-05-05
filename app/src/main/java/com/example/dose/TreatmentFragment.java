@@ -157,17 +157,17 @@ public class TreatmentFragment extends Fragment {
         {
             mBinding.treatment.setError("please enter correct treatment name");
         }
-        else if (t.getDiabetic().toLowerCase().equals(diabetic.toLowerCase()))
+        else if (t.getDiabetic().toLowerCase().equals("yes") && diabetic.toLowerCase().equals("yes"))
         {
             mBinding.result.setText("Bisoprolol should not be used if the patient has diabetes.\n" +
                     "لا ينبغي استخدام بيسوبرولول إذا كان المريض يعاني من مرض السكري.");
         }
-        else if (t.getPressure().toLowerCase().equals(pressure.toLowerCase()))
+        else if (t.getPressure().toLowerCase().equals("yes") && pressure.toLowerCase().equals("yes"))
         {
             mBinding.result.setText("Ibuprofen should not be used as an analgesic in patients with high blood pressure.\n" +
                     "لا ينبغي استخدام الإيبوبروفين كمسكن للمرضى الذين يعانون من ارتفاع ضغط ");
         }
-        else if (t.getPenicillinAllergy().toLowerCase().equals(penicillinAllergy.toLowerCase()))
+        else if (t.getPenicillinAllergy().toLowerCase().equals("yes")&&penicillinAllergy.toLowerCase().equals("yes"))
         {
             mBinding.result.setText("Augmentin should not be used if the patient is allergic to penicillin.\n" +
                     "لا ينبغي استخدام أوجمنتين إذا كان المريض يعاني من حساسية تجاه البنسلين.");

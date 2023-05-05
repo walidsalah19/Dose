@@ -31,6 +31,44 @@ public class RepeatAlarm extends Fragment {
         // Inflate the layout for this fragment
         mBinding=FragmentRepeatAlarmBinding.inflate(inflater,container,false);
         repeat=new ViewModelProvider(getActivity()).get(ViewModelData.class);
+        for (String day:Common.repeat)
+        {
+            if (day.equals("sunday"))
+            {
+                setColor(mBinding.Sunday);
+                sun++;
+            }
+            else if (day.equals("monday"))
+            {
+                setColor(mBinding.Monday);
+                mon++;
+            }
+            else if (day.equals("tuesday"))
+            {
+                setColor(mBinding.Tuesday);
+                tue++;
+            }
+            else if (day.equals("wednesday"))
+            {
+                setColor(mBinding.Wednesday);
+                wed++;
+            }
+            else if (day.equals("thursday"))
+            {
+                setColor(mBinding.Thursday);
+                thu++;
+            }
+            else if (day.equals("friday"))
+            {
+                setColor(mBinding.Friday);
+                fri++;
+            }
+            else if (day.equals("saturday"))
+            {
+                setColor(mBinding.Saturday);
+                sat++;
+            }
+        }
         back();
         mBinding.Sunday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +97,8 @@ public class RepeatAlarm extends Fragment {
                     mon=0;
                 }
             }
-        }); mBinding.Tuesday.setOnClickListener(new View.OnClickListener() {
+        });
+        mBinding.Tuesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (tue==0)
@@ -72,7 +111,8 @@ public class RepeatAlarm extends Fragment {
                     tue=0;
                 }
             }
-        }); mBinding.Wednesday.setOnClickListener(new View.OnClickListener() {
+        });
+        mBinding.Wednesday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (wed==0)
@@ -85,7 +125,8 @@ public class RepeatAlarm extends Fragment {
                     wed=0;
                 }
             }
-        }); mBinding.Thursday.setOnClickListener(new View.OnClickListener() {
+        });
+        mBinding.Thursday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (tue==0)
@@ -98,7 +139,8 @@ public class RepeatAlarm extends Fragment {
                     tue=0;
                 }
             }
-        }); mBinding.Friday.setOnClickListener(new View.OnClickListener() {
+        });
+        mBinding.Friday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (fri==0)
@@ -148,6 +190,10 @@ public class RepeatAlarm extends Fragment {
             repeat.repeat.setValue(Common.repeat);
 
         }
+    }
+    private void setColor(TextView text)
+    {
+        text.setTextColor(Color.parseColor("#036a79"));
     }
     private void back()
     {

@@ -61,7 +61,7 @@ public class AddAlarm extends Fragment {
                     String r="";
                     for(String d:Common.repeat)
                     {
-                        r+=d+" ";
+                        r+=d.charAt(0)+" ";
                         mBinding.text3.setText("Every "+r);
                     }
                 }
