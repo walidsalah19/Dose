@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +14,23 @@ import android.widget.TextView;
 
 import com.example.dose.Common;
 import com.example.dose.R;
+import com.example.dose.ViewModelData;
 import com.example.dose.databinding.FragmentRepeatAlarmBinding;
+
+import java.util.ArrayList;
 
 
 public class RepeatAlarm extends Fragment {
     private FragmentRepeatAlarmBinding mBinding;
     private int sun=0,mon=0,tue=0,wed=0,thu=0,fri=0,sat=0;
+    private ViewModelData repeat;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentRepeatAlarmBinding.inflate(inflater,container,false);
+        repeat=new ViewModelProvider(getActivity()).get(ViewModelData.class);
         back();
         mBinding.Sunday.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,10 +140,13 @@ public class RepeatAlarm extends Fragment {
         {
             text.setTextColor(Color.parseColor("#036a79"));
             Common.repeat.add(day);
+            repeat.repeat.setValue(Common.repeat);
         }
         else {
             text.setTextColor(Color.parseColor("#FF000000"));
             Common.repeat.remove(day);
+            repeat.repeat.setValue(Common.repeat);
+
         }
     }
     private void back()

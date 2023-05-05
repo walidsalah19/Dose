@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.work.ExistingPeriodicWorkPolicy;
 import androidx.work.PeriodicWorkRequest;
 import androidx.work.WorkManager;
@@ -17,6 +19,7 @@ import com.example.dose.Common;
 import com.example.dose.Models.Alarm;
 import com.example.dose.R;
 import com.example.dose.User.RepeatAlarm;
+import com.example.dose.ViewModelData;
 import com.example.dose.databinding.FragmentAddAlarmBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -34,15 +38,35 @@ public class AddAlarm extends Fragment {
     private FragmentAddAlarmBinding mBinding;
     private DatabaseReference database;
     private String userId;
+    private ViewModelData repeat;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentAddAlarmBinding.inflate(inflater,container,false);
+        repeat=new ViewModelProvider(getActivity()).get(ViewModelData.class);
         initFirebase();
         repeat();
         addAlarm();
         back();
+
+        repeat.getRepeat().observe(getActivity(), new Observer<ArrayList<String>>() {
+            @Override
+            public void onChanged(ArrayList<String> strings) {
+                if (Common.repeat.isEmpty())
+                {
+                    mBinding.text3.setText("Every Day");
+                }
+                else {
+                    String r="";
+                    for(String d:Common.repeat)
+                    {
+                        r+=d+" ";
+                        mBinding.text3.setText("Every "+r);
+                    }
+                }
+            }
+        });
         return mBinding.getRoot();
     }
     private void initFirebase()
@@ -114,21 +138,6 @@ public class AddAlarm extends Fragment {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new Alarms()).commit();
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (Common.repeat.isEmpty())
-        {
-            mBinding.text3.setText("Every Day");
-        }
-        else {
-            for(String d:Common.repeat)
-            {
-                mBinding.text3.setText("Every "+d+" ");
-            }
-        }
     }
 
     private void repeat()

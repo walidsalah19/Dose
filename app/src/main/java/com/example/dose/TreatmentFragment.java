@@ -32,13 +32,13 @@ public class TreatmentFragment extends Fragment {
     private String userId;
     private ArrayList<Treatment> treatments;
     private DatabaseReference database;
-    private String height,weight,age,diabetic,pressure,penicillinAllergy;
+    private String height,weight="1",age="1",diabetic="",pressure="",penicillinAllergy="",type="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentTreatmentBinding.inflate(inflater,container,false);
-        String type=getArguments().getString("type");
+        type=getArguments().getString("type");
         if (type.equals("1"))
         {
             mBinding.back.setVisibility(View.GONE);
@@ -103,9 +103,10 @@ public class TreatmentFragment extends Fragment {
                     penicillinAllergy = snapshot.child("penicillinAllergy").getValue().toString();
                 }
                 else {
-                    funFailed("you need to add your health record");
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new UserHome()).commit();
-
+                    if (! type.equals("1")) {
+                        funFailed("you need to add your health record");
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new UserHome()).commit();
+                    }
                 }
             }
 
@@ -156,17 +157,17 @@ public class TreatmentFragment extends Fragment {
         {
             mBinding.treatment.setError("please enter correct treatment name");
         }
-        else if (t.getDiabetic().equals(diabetic))
+        else if (t.getDiabetic().toLowerCase().equals(diabetic.toLowerCase()))
         {
             mBinding.result.setText("Bisoprolol should not be used if the patient has diabetes.\n" +
                     "لا ينبغي استخدام بيسوبرولول إذا كان المريض يعاني من مرض السكري.");
         }
-        else if (t.getPressure().equals(pressure))
+        else if (t.getPressure().toLowerCase().equals(pressure.toLowerCase()))
         {
             mBinding.result.setText("Ibuprofen should not be used as an analgesic in patients with high blood pressure.\n" +
                     "لا ينبغي استخدام الإيبوبروفين كمسكن للمرضى الذين يعانون من ارتفاع ضغط ");
         }
-        else if (t.getPenicillinAllergy().equals(penicillinAllergy))
+        else if (t.getPenicillinAllergy().toLowerCase().equals(penicillinAllergy.toLowerCase()))
         {
             mBinding.result.setText("Augmentin should not be used if the patient is allergic to penicillin.\n" +
                     "لا ينبغي استخدام أوجمنتين إذا كان المريض يعاني من حساسية تجاه البنسلين.");

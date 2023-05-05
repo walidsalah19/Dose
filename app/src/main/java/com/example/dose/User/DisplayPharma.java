@@ -45,6 +45,7 @@ public class DisplayPharma extends Fragment {
         init();
         chat();
         getUsers();
+        back();
         return mBinding.getRoot();
     }
     private void startLoading()

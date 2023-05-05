@@ -96,9 +96,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardView1"/>
-            <EditText
+            <TextView
                 android:id="@+id/result"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
@@ -106,8 +106,9 @@
                 android:background="@drawable/edittext_background2"
                 android:drawablePadding="10dp"
                 android:hint="Result"
-                android:inputType="text"
                 android:padding="20dp"
+                android:singleLine="false"
+                android:gravity="start"
                 android:textColorHint="@color/color4"
                 android:textColor="@color/color4"
                 app:layout_constraintEnd_toEndOf="parent"

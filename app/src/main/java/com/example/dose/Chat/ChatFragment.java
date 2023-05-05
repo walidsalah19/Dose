@@ -57,7 +57,9 @@ public class ChatFragment extends Fragment {
         Database= FirebaseDatabase.getInstance().getReference("chat");
         userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         receiverId=user.getId();
-        Glide.with(this).load(user.getImage()).into(mBinding.profileImage);
+        if (! user.getImage().equals("")) {
+            Glide.with(this).load(user.getImage()).into(mBinding.profileImage);
+        }
         recyclerViewComponent();
         back();
         sendMessage();
