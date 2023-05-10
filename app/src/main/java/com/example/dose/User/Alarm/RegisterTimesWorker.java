@@ -59,6 +59,7 @@ public class RegisterTimesWorker extends Worker {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists())
                     {
+                        times.clear();
                         for (DataSnapshot snap:snapshot.getChildren())
                         {
                             String status=snap.child("status").getValue().toString();

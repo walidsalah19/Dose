@@ -1,5 +1,6 @@
 package com.example.dose;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -159,18 +160,18 @@ public class TreatmentFragment extends Fragment {
         }
         else if (t.getDiabetic().toLowerCase().equals("yes") && diabetic.toLowerCase().equals("yes"))
         {
-            mBinding.result.setText("Bisoprolol should not be used if the patient has diabetes.\n" +
-                    "لا ينبغي استخدام بيسوبرولول إذا كان المريض يعاني من مرض السكري.");
+            mBinding.result.setTextColor(getResources().getColor(R.color.red));
+            mBinding.result.setText("Bisoprolol should not be used if the patient has diabetes.\n");
         }
         else if (t.getPressure().toLowerCase().equals("yes") && pressure.toLowerCase().equals("yes"))
         {
-            mBinding.result.setText("Ibuprofen should not be used as an analgesic in patients with high blood pressure.\n" +
-                    "لا ينبغي استخدام الإيبوبروفين كمسكن للمرضى الذين يعانون من ارتفاع ضغط ");
+            mBinding.result.setTextColor(getResources().getColor(R.color.red));
+            mBinding.result.setText("Ibuprofen should not be used as an analgesic in patients with high blood pressure.\n");
         }
         else if (t.getPenicillinAllergy().toLowerCase().equals("yes")&&penicillinAllergy.toLowerCase().equals("yes"))
         {
-            mBinding.result.setText("Augmentin should not be used if the patient is allergic to penicillin.\n" +
-                    "لا ينبغي استخدام أوجمنتين إذا كان المريض يعاني من حساسية تجاه البنسلين.");
+            mBinding.result.setTextColor(getResources().getColor(R.color.red));
+            mBinding.result.setText("Augmentin should not be used if the patient is allergic to penicillin.\n");
         }
         else
         {

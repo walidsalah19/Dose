@@ -109,8 +109,10 @@
                 android:padding="20dp"
                 android:singleLine="false"
                 android:gravity="start"
-                android:textColorHint="@color/color4"
-                android:textColor="@color/color4"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColorHint="@color/green"
+                android:textColor="@color/green"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/check" />
