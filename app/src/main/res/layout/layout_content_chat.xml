@@ -32,7 +32,8 @@
             android:background="@drawable/chat_background"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:padding="5dp">
+            android:padding="5dp"
+            android:layout_marginTop="5dp">
 
             <RelativeLayout
                 android:id="@+id/receiver_m_text"
@@ -87,7 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_toStartOf="@id/sender_image"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="5dp">
 
             <RelativeLayout
                 android:id="@+id/sender_m_text"

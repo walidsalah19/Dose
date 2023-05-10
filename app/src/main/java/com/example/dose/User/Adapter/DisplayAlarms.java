@@ -39,14 +39,9 @@ public class DisplayAlarms extends RecyclerView.Adapter<DisplayAlarms.help>{
 
     @Override
     public void onBindViewHolder(@NonNull help holder, @SuppressLint("RecyclerView") int position) {
-        long delay=  Common.calculateDelay("12:00",alarms.get(position).getTime());
+        String time=alarms.get(position).getHours()+":"+alarms.get(position).getMinute();
+            holder.alarm.setText(time+" "+alarms.get(position).getType());
 
-        if (delay>=0) {
-            holder.alarm.setText(alarms.get(position).getTime()+" PM");
-        }
-        else {
-            holder.alarm.setText(alarms.get(position).getTime()+" Am");
-        }
         if (alarms.get(position).getStatus().equals("on"))
         {
             holder.alarm.setChecked(true);

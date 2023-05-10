@@ -1,5 +1,6 @@
 package com.example.dose.Chat;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,15 +8,22 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.dose.Common;
 import com.example.dose.Models.MessageModel;
 import com.example.dose.Models.User;
 import com.example.dose.R;
+import com.example.dose.SendNotificationPack.APIService;
+import com.example.dose.SendNotificationPack.Client;
+import com.example.dose.SendNotificationPack.Data;
+import com.example.dose.SendNotificationPack.MyResponse;
+import com.example.dose.SendNotificationPack.NotificationSender;
 import com.example.dose.User.DisplayPharma;
 import com.example.dose.databinding.FragmentChatBinding;
 import com.example.dose.pharmaceutical.DisplayUsers;
@@ -27,12 +35,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class ChatFragment extends Fragment {
@@ -42,6 +57,9 @@ public class ChatFragment extends Fragment {
     private ChatAdapter adapter;
     private String receiverId,userId;
     private User user;
+    private APIService apiService;
+    private String userName;
+    private Map<String ,String> profile=new HashMap<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +71,19 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentChatBinding.inflate(inflater,container,false);
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
         user=getArguments().getParcelable("user");
         Database= FirebaseDatabase.getInstance().getReference("chat");
         userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
         receiverId=user.getId();
         if (! user.getImage().equals("")) {
             Glide.with(this).load(user.getImage()).into(mBinding.profileImage);
+        }
+        if (Common.type==1) {
+            getUserName("pharma",userId);
+        }
+        else {
+            getUserName("users",userId);
         }
         recyclerViewComponent();
         back();
@@ -126,9 +151,16 @@ public class ChatFragment extends Fragment {
                 {
                     Database.child(receiverId).child(userId).push().setValue(messageModel);
                     mBinding.sendMessageText.setText("");
+                    getToken(receiverId,userName,messageModel.getMessage());
+                    addToNotification();
                 }
             }
         });
+    }
+    private void addToNotification()
+    {
+        String noty=userName+" Send new message";
+        FirebaseDatabase.getInstance().getReference("notification").child(receiverId).push().child("notify").setValue(noty);
     }
     private String getDateTime() {
         DateFormat dateFormat = new SimpleDateFormat("HH.mm", Locale.US);
@@ -147,6 +179,61 @@ public class ChatFragment extends Fragment {
                     getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new DisplayPharma()).commit();
 
                 }
+            }
+        });
+    }
+    private void getUserName(String table,String id)
+    {
+        FirebaseDatabase.getInstance().getReference(table).child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userName=snapshot.child("userName").getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void getToken(String userID, String title, String message) {
+        FirebaseDatabase.getInstance().getReference("tokens").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists())
+                {
+                    String token=snapshot.child("token").getValue().toString();
+                    sendNotifications(token,title,message);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void sendNotifications(String usertoken, String title, String message) {
+        Data data = new Data(title, message);
+        NotificationSender sender = new NotificationSender(data, usertoken);
+        apiService.sendNotifcation(sender).enqueue(new Callback<MyResponse>() {
+            @SuppressLint("ShowToast")
+            @Override
+            public void onResponse(@NonNull Call<MyResponse> call, @NonNull Response<MyResponse> response) {
+                if (response.code() == 200) {
+                    if (response.body() != null && response.body().success != 1) {
+                        Toast.makeText(getActivity(), "Failed ", Toast.LENGTH_LONG);
+                    } else {
+                        Log.e("success", response.code() + " success ya Fashel " + response.body().success + " Token " + usertoken);
+                    }
+                } else {
+                    Log.e("send Notifications", "Failed ya Fashel: " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MyResponse> call, @NonNull Throwable t) {
             }
         });
     }

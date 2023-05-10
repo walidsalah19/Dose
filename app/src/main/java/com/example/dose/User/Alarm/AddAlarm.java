@@ -87,13 +87,22 @@ public class AddAlarm extends Fragment {
                 else {
                     int hour = 0;
                     int minute = 0;
+                    String type="am";
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
                         hour = mBinding.datePicker1.getHour();
                         minute = mBinding.datePicker1.getMinute();
+                        if (hour>12)
+                        {
+                            hour-=12;
+                            type="pm";
+                        }
+                        else if (hour==12)
+                        {
+                            type="pm";
+                        }
                     }
-                    String time=hour+":"+minute;
                     String id= UUID.randomUUID().toString();
-                    Alarm a=new Alarm(name,time,"on",id,Common.repeat);
+                    Alarm a=new Alarm(name,hour+"",minute+"","on",id, type, Common.repeat);
                     addToMyAlarms(a);
                 }
             }

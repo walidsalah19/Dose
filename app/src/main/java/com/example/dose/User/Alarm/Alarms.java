@@ -17,8 +17,6 @@ import com.example.dose.Models.Alarm;
 import com.example.dose.R;
 import com.example.dose.SweetDialog;
 import com.example.dose.User.Adapter.DisplayAlarms;
-import com.example.dose.User.Adapter.DisplayPharmaAdapter;
-import com.example.dose.User.Alarm.AddAlarm;
 import com.example.dose.User.UserHome;
 import com.example.dose.databinding.FragmentAlarmsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -85,10 +83,12 @@ public class Alarms extends Fragment {
                     for (DataSnapshot snap:snapshot.getChildren())
                     {
                         String name=snap.child("name").getValue().toString();
-                        String time=snap.child("time").getValue().toString();
+                        String hours=snap.child("hours").getValue().toString();
+                        String minute=snap.child("minute").getValue().toString();
                         String status=snap.child("status").getValue().toString();
                         String alarmId=snap.child("alarmId").getValue().toString();
-                        alarms.add(new Alarm(name,time,status,alarmId,null));
+                        String type=snap.child("type").getValue().toString();
+                        alarms.add(new Alarm(name,hours,minute,status,alarmId, type, null));
                     }
                 }
                 loading.dismiss();
