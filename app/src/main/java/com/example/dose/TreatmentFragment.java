@@ -33,7 +33,7 @@ public class TreatmentFragment extends Fragment {
     private String userId;
     private ArrayList<Treatment> treatments;
     private DatabaseReference database;
-    private String height,weight="1",age="1",diabetic="",pressure="",penicillinAllergy="",type="";
+    private String height,weight="1",age="18",diabetic="",pressure="",penicillinAllergy="",type="";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -147,6 +147,7 @@ public class TreatmentFragment extends Fragment {
 
     private void checkUserHealth(String tName) {
         Treatment t = null;
+        String tType=mBinding.type.getSelectedItem().toString();
         for (Treatment tr:treatments)
         {
             if (tr.getTreatmentName().toLowerCase().equals(tName.toLowerCase()))
@@ -154,9 +155,20 @@ public class TreatmentFragment extends Fragment {
                 t=tr;
             }
         }
+
         if (t==null)
         {
             mBinding.treatment.setError("please enter correct treatment name");
+        }
+        else if (Integer.parseInt(age)<18 && tType.equals("pills"))
+        {
+            mBinding.result.setTextColor(getResources().getColor(R.color.red));
+            mBinding.result.setText("Wrong because his age does not allow him to take pills, he must take drink");
+        }
+        else if (Integer.parseInt(age)>=18 && tType.equals("drink"))
+        {
+            mBinding.result.setTextColor(getResources().getColor(R.color.red));
+            mBinding.result.setText("This adult should take pills");
         }
         else if (t.getDiabetic().toLowerCase().equals("yes") && diabetic.toLowerCase().equals("yes"))
         {
@@ -175,6 +187,7 @@ public class TreatmentFragment extends Fragment {
         }
         else
         {
+            mBinding.result.setTextColor(getResources().getColor(R.color.green));
             if(t.getTreatmentName().toLowerCase().equals("ibuprofen"))
             {
                 calculateIbuprofen();
@@ -209,6 +222,7 @@ public class TreatmentFragment extends Fragment {
         else {
             int num=10*Integer.parseInt(weight);
             int dose=num/4;
+            dose=dose/4;
             mBinding.result.setText(dose+" mg every 6h max 1625 mg daily ");
         }
     }
@@ -221,6 +235,7 @@ public class TreatmentFragment extends Fragment {
         else {
             int num=5*Integer.parseInt(weight);
             int dose=num/3;
+            dose=dose/4;
             mBinding.result.setText(dose+" mg every 6h ");
         }
     }
