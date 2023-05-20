@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.dose.R;
-import com.example.dose.TreatmentFragment;
 import com.example.dose.User.Alarm.Alarms;
 import com.example.dose.databinding.FragmentUserHomeBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -105,10 +104,7 @@ public class UserHome extends Fragment {
         mBinding.cardView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle b=new Bundle();
-                b.putString("type","2");
                 TreatmentFragment t=new TreatmentFragment();
-                t.setArguments(b);
                 moveToFragment(t);
             }
         });

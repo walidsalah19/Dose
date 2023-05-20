@@ -33,7 +33,7 @@ public class MyFireBaseMessagingService extends FirebaseMessagingService {
         message = remoteMessage.getData().get("Message");
        Intent intent1 = new Intent(this, Login.class);
         intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent1,PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT);
 
         Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         MediaPlayer mediaPlayer = MediaPlayer.create (getApplicationContext(), alarmSound);

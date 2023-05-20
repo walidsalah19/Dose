@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".User.TreatmentFragment"
+    tools:context=".pharmaceutical.PharmaChack"
     android:background="@color/color7"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -54,8 +55,62 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text" />
-            <androidx.cardview.widget.CardView
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/treatment"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                >
+                <EditText
+                    android:id="@+id/age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:background="@drawable/edittext_background2"
+                    android:drawablePadding="10dp"
+                    android:hint="Age"                    android:layout_margin="5dp"
+                    android:inputType="numberDecimal"
+                    android:padding="20dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/color4"
+                    android:textColor="@color/color4" />
+                <EditText
+                    android:id="@+id/Weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:background="@drawable/edittext_background2"
+                    android:drawablePadding="10dp"
+                    android:hint="Weight"
+                    android:layout_weight="1"
+                    android:inputType="numberDecimal"
+                    android:padding="20dp"
+                    android:layout_margin="5dp"
+                    android:textColorHint="@color/color4"
+                    android:textColor="@color/color4" />
+                <EditText
+                    android:id="@+id/Height"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="top"
+                    android:background="@drawable/edittext_background2"
+                    android:drawablePadding="10dp"
+                    android:hint="Height"
+                    android:layout_weight="1"
+                    android:layout_margin="5dp"
+                    android:inputType="numberDecimal"
+                    android:padding="20dp"
+                    android:textColorHint="@color/color4"
+                    android:textColor="@color/color4" />
+
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                app:layout_constraintTop_toBottomOf="@id/layout"
                 android:id="@+id/cardView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +156,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="150dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
                 android:background="@drawable/edittext_background2"
                 android:drawablePadding="10dp"

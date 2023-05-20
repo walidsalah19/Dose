@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import com.example.dose.R;
-import com.example.dose.TreatmentFragment;
 import com.example.dose.UserAccess.Login;
 import com.example.dose.databinding.ActivityPharmaceuticalMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
@@ -61,10 +60,7 @@ public class PharmaceuticalMainActivity extends AppCompatActivity {
                 else if (item.getItemId() == R.id.chat)
                     moveToFragment(new DisplayUsers());
                 else if (item.getItemId() == R.id.check) {
-                    Bundle b=new Bundle();
-                    b.putString("type","1");
-                    TreatmentFragment t=new TreatmentFragment();
-                    t.setArguments(b);
+                    PharmaChack t=new PharmaChack();
                     moveToFragment(t);
                 }
                 return false;

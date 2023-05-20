@@ -18,6 +18,7 @@ import com.example.dose.SweetDialog;
 import com.example.dose.User.Adapter.DisplayPharmaAdapter;
 import com.example.dose.databinding.FragmentDisplayPharmaBinding;
 import com.example.dose.pharmaceutical.Adapter.DisplayUsersAdapter;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,6 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -35,6 +37,8 @@ public class DisplayPharma extends Fragment {
     private DisplayPharmaAdapter adapter;
     private ArrayList<User> users;
     private SweetAlertDialog loading;
+    private HashMap<String,String> messNum;
+    private String userId;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -56,11 +60,13 @@ public class DisplayPharma extends Fragment {
     private void initFirebase()
     {
         database= FirebaseDatabase.getInstance().getReference("pharma");
+        userId= FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
     }
     private void init()
     {
+        messNum=new HashMap<>();
         users=new ArrayList<>();
-        adapter=new DisplayPharmaAdapter(users,getContext());
+        adapter=new DisplayPharmaAdapter(users,messNum,getContext());
         mBinding.users.setLayoutManager(new LinearLayoutManager(getActivity()));
         mBinding.users.setAdapter(adapter);
     }
@@ -80,8 +86,36 @@ public class DisplayPharma extends Fragment {
                         String image=data.child("image").getValue().toString();
                         users.add(new User(name,email,id,type,image));
                     }
-                    adapter.notifyDataSetChanged();
+                    getMessageNum();
                 }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+    private void getMessageNum()
+    {
+        FirebaseDatabase.getInstance().getReference("messageNum").child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                messNum.clear();
+                if (snapshot.exists())
+                {
+                    for (DataSnapshot snap:snapshot.getChildren())
+                    {
+                        String key = snap.getKey();
+                        String num = snap.child("num").getValue().toString();
+                        messNum.put(key,num);
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+                adapter.notifyDataSetChanged();
+
                 loading.dismiss();
             }
 

@@ -1,4 +1,4 @@
-package com.example.dose;
+package com.example.dose.User;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.example.dose.Models.Treatment;
+import com.example.dose.R;
+import com.example.dose.SweetDialog;
 import com.example.dose.User.UserHome;
 import com.example.dose.databinding.FragmentTreatmentBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,11 +41,6 @@ public class TreatmentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding=FragmentTreatmentBinding.inflate(inflater,container,false);
-        type=getArguments().getString("type");
-        if (type.equals("1"))
-        {
-            mBinding.back.setVisibility(View.GONE);
-        }
         treatments=new ArrayList<>();
         initFirebase();
         startLoading();
@@ -104,10 +101,8 @@ public class TreatmentFragment extends Fragment {
                     penicillinAllergy = snapshot.child("penicillinAllergy").getValue().toString();
                 }
                 else {
-                    if (! type.equals("1")) {
                         funFailed("you need to add your health record");
                         getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.userFrameLayout, new UserHome()).commit();
-                    }
                 }
             }
 

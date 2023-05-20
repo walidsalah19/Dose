@@ -9,17 +9,14 @@
         <item>Pharmaceutical</item>
     </string-array>
     <string-array name="Diabetic">
-        <item>Diabetic</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
     <string-array name="pressure">
-        <item>Pressure</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
     <string-array name="onsoline">
-        <item>Penicillin Allergy</item>
         <item>Yes</item>
         <item>No</item>
     </string-array>

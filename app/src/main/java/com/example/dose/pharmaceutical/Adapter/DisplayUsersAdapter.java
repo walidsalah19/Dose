@@ -16,6 +16,7 @@ import com.example.dose.Models.User;
 import com.example.dose.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapter.help>{
     private OnItemClickListener mListener;
@@ -27,9 +28,12 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
     }
     private ArrayList<User> users;
     Context context;
-    public DisplayUsersAdapter(ArrayList<User> users,Context context) {
+    HashMap<String, String> messNum;
+    public DisplayUsersAdapter(ArrayList<User> users, HashMap<String, String> messNum, Context context) {
         this.users = users;
         this.context=context;
+        this.messNum=messNum;
+
     }
 
     @NonNull
@@ -42,6 +46,20 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
     @Override
     public void onBindViewHolder(@NonNull help holder, @SuppressLint("RecyclerView") int position) {
         holder.name.setText(users.get(position).getUserName());
+        if (messNum.containsKey(users.get(position).getId())) {
+            String num=messNum.get(users.get(position).getId());
+            if (! num.equals("0")){
+                holder.num.setText(messNum.get(users.get(position).getId()));
+            }
+            else
+            {
+                holder.num.setVisibility(View.GONE);
+            }
+        }
+        else
+        {
+            holder.num.setVisibility(View.GONE);
+        }
         if (! users.get(position).getImage().equals(""))
         {
             Glide.with(context).load(users.get(position).getImage()).into(holder.profile_image);
@@ -61,11 +79,12 @@ public class DisplayUsersAdapter extends RecyclerView.Adapter<DisplayUsersAdapte
 
     public class help extends RecyclerView.ViewHolder
     {
-        TextView name;
+        TextView name,num;
         ImageView profile_image;
         public help(@NonNull View itemView) {
             super(itemView);
             name=itemView.findViewById(R.id.userName);
+            num=itemView.findViewById(R.id.newMess);
             profile_image=itemView.findViewById(R.id.profile_image);
         }
     }

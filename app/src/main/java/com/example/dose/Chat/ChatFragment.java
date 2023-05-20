@@ -59,6 +59,7 @@ public class ChatFragment extends Fragment {
     private User user;
     private APIService apiService;
     private String userName;
+    private int mess=0;
     private Map<String ,String> profile=new HashMap<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -116,6 +117,8 @@ public class ChatFragment extends Fragment {
                         message.add(model);
                     }
                     adapter.notifyDataSetChanged();
+                    mBinding.chat.scrollToPosition(adapter.getItemCount()-1);
+                    removeNew();
                 }
             }
 
@@ -125,6 +128,11 @@ public class ChatFragment extends Fragment {
             }
         });
     }
+
+    private void removeNew() {
+        FirebaseDatabase.getInstance().getReference("messageNum").child(userId).child(receiverId).child("num").setValue(0);
+    }
+
     private void sendMessage()
     {
         mBinding.sendMessage.setOnClickListener(new View.OnClickListener() {
@@ -153,10 +161,37 @@ public class ChatFragment extends Fragment {
                     mBinding.sendMessageText.setText("");
                     getToken(receiverId,userName,messageModel.getMessage());
                     addToNotification();
+                    mess=1;
+                    addToNew();
                 }
             }
         });
     }
+
+    private void addToNew() {
+        FirebaseDatabase.getInstance().getReference("messageNum").child(receiverId).child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists() ) {
+                    if (mess == 1) {
+                        int num = Integer.parseInt(snapshot.child("num").getValue().toString());
+                        num++;
+                        FirebaseDatabase.getInstance().getReference("messageNum").child(receiverId).child(userId).child("num").setValue(num);
+                        mess=0;
+                    }
+                }
+                else {
+                    FirebaseDatabase.getInstance().getReference("messageNum").child(receiverId).child(userId).child("num").setValue(1);
+                }
+                }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
     private void addToNotification()
     {
         String noty=userName+" Send new message";
