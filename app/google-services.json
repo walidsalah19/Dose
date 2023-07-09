@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1022056917719",
-    "project_id": "dose-8bee0",
-    "storage_bucket": "dose-8bee0.appspot.com"
+    "project_number": "528839034018",
+    "project_id": "dosproject-1b019",
+    "storage_bucket": "dosproject-1b019.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1022056917719:android:6f24dc3f611e5e73445e92",
+        "mobilesdk_app_id": "1:528839034018:android:1704c660e21b9360b943fb",
         "android_client_info": {
-          "package_name": "com.example.dose"
+          "package_name": "com.doseApp.dose.dose"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1022056917719-v1367gd11fa0rpr66j2sshkrhq2s2fq5.apps.googleusercontent.com",
+          "client_id": "528839034018-0k8pmg18iq0cm3410010jkn6loktiqv0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doseApp.dose.dose",
+            "certificate_hash": "b3852f47eca94b777704e0ad0123f91f1b70793d"
+          }
+        },
+        {
+          "client_id": "528839034018-uavm34jodm0a679ccqe0jo9777dgkfrr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAo-ek3VBuEZCV_EUkIxCywiLqdFkvpGEM"
+          "current_key": "AIzaSyDvMjyZa5Wcwz9joeYFHqFnSbRBESBeEgQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1022056917719-v1367gd11fa0rpr66j2sshkrhq2s2fq5.apps.googleusercontent.com",
+              "client_id": "528839034018-uavm34jodm0a679ccqe0jo9777dgkfrr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

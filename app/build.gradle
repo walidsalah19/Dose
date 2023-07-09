@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.dose'
+    namespace 'com.doseApp.dose.dose'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.dose"
+        applicationId "com.doseApp.dose.dose"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -66,5 +66,9 @@ dependencies {
 
     //Alert Dialog
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
+
+    //sensor
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.google.code.gson:gson:2.8.8'
 
 }
